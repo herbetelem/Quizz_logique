@@ -32,8 +32,6 @@ class Score:
 
     def update(self, screen):
         # * je fait les update de mes different items
-        screen.blit(self.background, (0,0))
-        screen.blit(self.logo, (30,30))
         self.sql_request.read_score()
         font = pygame.font.Font(None, 36)
         nb_vainqueur = len(self.sql_request.score_tmp)
