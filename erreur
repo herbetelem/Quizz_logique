@@ -1,0 +1,25 @@
+Changer le round :
+
+    if variable_load.round1_rect.collidepoint(event.pos):
+        game.change_round("self.round1")
+        game.choice_player = 1
+    if variable_load.round2_rect.collidepoint(event.pos):
+        game.change_round("self.round2")
+        game.choice_player = 2
+    if variable_load.round3_rect.collidepoint(event.pos):
+        game.change_round("self.round3")
+        game.choice_player = 3
+    if variable_load.round4_rect.collidepoint(event.pos):
+        game.change_round("self.round4")
+        game.choice_player = 4   
+   
+   
+    def change_round(self, index):
+        
+        for round in self.list_round:
+            if round == index :
+                round = True
+            else :
+                round = False
+
+__________________________________________________________________________________________________________________|
