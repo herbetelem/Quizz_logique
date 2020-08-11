@@ -113,21 +113,31 @@ class Game:
         # importer la question 
         self.sql_request.read_question(self.question)
         variable = self.sql_request.question_tmp[1]
+        # font = pygame.font.Font(None, 35)
         self.correct_answer = self.sql_request.question_tmp[2]
-        # print la question
         font = pygame.font.Font(None, 35)
-        text = font.render(variable, 1, (255,255,255))
-        text_rect = text.get_rect()
-        # Positionner la question
-        text_rect.x = self.variable_load.lol.get_width() + 70
-        text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - 15 )
-        screen.blit(text, text_rect)
 
-        # importer les questions 
+        if len(self.sql_request.question_tmp[1]) > 58 :
+            self.print_question(screen, variable[:len(self.sql_request.question_tmp[1]) - 58], 10 )
+            self.print_question(screen, variable[58:], 20)
+        else :
+            self.print_question(screen, variable, 15)
+
+        # print la question
+        
+        # text = font.render(variable, 1, (255,255,255))
+        # text_rect = text.get_rect()
+        # # Positionner la question
+        # text_rect.x = self.variable_load.lol.get_width() + 70
+        # text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - 15 )
+        # screen.blit(text, text_rect)
+
+        # importer les réponses 
+        text_rect = text.get_rect()
         counter = 0
         self.sql_request.read_answer(self.question)
-        variable = self.sql_request.anwser_tmp
-        text = font.render(variable[counter][2], 1, (255,255,255))
+        reponse = self.sql_request.anwser_tmp
+        text = font.render(reponse[counter][2], 1, (255,255,255))
         text_rect.x = self.variable_load.lol.get_width() + 100
         text_rect.y = math.ceil(screen.get_height() / 35 + 237)
         
@@ -218,6 +228,14 @@ class Game:
         screen.blit(self.background, (0,0))
 
 
-
+    def print_question(self, screen, variable, y):
+        
+        font = pygame.font.Font(None, 35)
+        text = font.render(variable, 1, (255,255,255))
+        text_rect = text.get_rect()
+        # Positionner la question
+        text_rect.x = self.variable_load.lol.get_width() + 70
+        text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - y )
+        screen.blit(text, text_rect)
 
 
