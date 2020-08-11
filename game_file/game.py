@@ -151,7 +151,7 @@ class Game:
 
     def create_bloc(self, screen):
         y = math.ceil(screen.get_height() / 35 + 215)
-        x = self.variable_load.lol.get_width() + 50
+        x = 250
         for bloc in range (4) :
             bloc = Model_button(x, y)
             self.list_bloc.append(bloc)
