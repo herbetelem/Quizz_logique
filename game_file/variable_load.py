@@ -10,11 +10,6 @@ class Variable_load:
 
     def __init__(self, screen):
 
-        # print logo LoL
-        self.lol = pygame.image.load('asset/button/LoL.png')
-        self.lol_rect = self.lol.get_rect()
-        self.lol_rect.x = 10
-        self.lol_rect.y = 10
 
         # print le cadre du titre 
         self.title = pygame.image.load('asset/button/title.png')

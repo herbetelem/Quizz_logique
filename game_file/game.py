@@ -38,7 +38,7 @@ class Game:
         self.list_bloc = []
         self.list_round = [self.round1, self.round2, self.round3, self.round4]
         self.list_champ = []
-        self.list_champ_name = ["hadrien", "melanie", "alexandre", "aurelia", "guillaume", "alain", "javier", "alex", "laura", "wilfried"]
+        self.list_champ_name = ["Hadrien", "Alain", "Alexandre", "Aurelia", "Guillaume", "Javier", "Wilfried", "Alex", "Laura", "Mélanie"]
         self.list_champ_rect = [[18, 138], [18, 251], [18, 364], [18, 477], [18, 590], [856, 138], [856, 251], [856, 364], [856, 477], [856, 590]]
         # * son
         self.sound_win = pygame.mixer.Sound("asset/music/true.ogg")
@@ -63,13 +63,8 @@ class Game:
             # * gestion du temps
             if self.timer > 0:
                 self.timer -= self.clock.tick(60)
-            
-            # * afficher le background de la question
-            self.background = pygame.image.load(self.list_background[self.question])
-            self.background = pygame.transform.scale(self.background, (1080, 720))
 
             # afficher le logo, le bloc de la question et les bloc reponse et next
-            screen.blit(self.variable_load.lol, self.variable_load.lol_rect)
             screen.blit(self.variable_load.title, self.variable_load.title_rect)
             if self.choice_player > 0 and self.player_validated == False:
                 screen.blit(self.variable_load.validation, self.variable_load.validation_rect)
@@ -79,12 +74,6 @@ class Game:
             # * afficher les bloc
             for bloc in self.list_bloc:
                 screen.blit(bloc.image, bloc.rect)
-
-            #print les block réponse 4 fois 
-            # self.variable_load.block_rect.y = math.ceil(screen.get_height() / 35 + 215)
-            # for loop in range (4) :
-            #     screen.blit(self.variable_load.block, self.variable_load.block_rect)
-            #     self.variable_load.block_rect.y += 110
 
             #print les ronds 4 fois
             self.variable_load.round1_rect.y = math.ceil(screen.get_height() / 35 + 225)
