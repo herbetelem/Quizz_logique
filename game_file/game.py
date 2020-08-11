@@ -125,12 +125,12 @@ class Game:
 
         # print la question
         
-        # text = font.render(variable, 1, (255,255,255))
-        # text_rect = text.get_rect()
-        # # Positionner la question
-        # text_rect.x = self.variable_load.lol.get_width() + 70
-        # text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - 15 )
-        # screen.blit(text, text_rect)
+        text = font.render(variable, 1, (255,255,255))
+        text_rect = text.get_rect()
+        # Positionner la question
+        text_rect.x = self.variable_load.lol.get_width() + 70
+        text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - 15 )
+        screen.blit(text, text_rect)
 
         # importer les réponses 
         text_rect = text.get_rect()
@@ -237,6 +237,3 @@ class Game:
         text_rect.x = self.variable_load.lol.get_width() + 70
         text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - y )
         screen.blit(text, text_rect)
-
-
- 
