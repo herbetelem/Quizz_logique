@@ -105,8 +105,8 @@ class Game:
         text = font.render(phrase, 1, (255,255,255))
 
         # * blit le timer
-        screen.blit(self.background_timer, (25, 120))
-        screen.blit(text,(50, 145))
+        screen.blit(self.background_timer, (700, 160))
+        screen.blit(text,(715, 185))
         
     def update_question(self, screen):
 
