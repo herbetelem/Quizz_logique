@@ -17,6 +17,14 @@ class Variable_load:
         self.title_rect = self.title.get_rect()
         self.title_rect.x = 120
         self.title_rect.y = math.ceil(screen.get_height() / 40)
+        
+        
+        # print le bloc de solution
+        self.soluce = pygame.image.load('asset/button/title.png')
+        self.soluce = pygame.transform.scale(self.soluce, (270, 300))
+        self.soluce_rect = self.title.get_rect()
+        self.soluce_rect.x = 700
+        self.soluce_rect.y = 250
 
 
         # Print block basique sans validation
