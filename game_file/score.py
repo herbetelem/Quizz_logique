@@ -44,7 +44,7 @@ class Score:
             screen.blit(block,(450, y_temp - 15))
             screen.blit(text,(500, y_temp))
             y_temp += 70
-        # screen.blit(self.home, self.home_rect)
+        screen.blit(self.home, self.home_rect)
 
     # Envoyer les scores a la base de donnée 
     def score_player(self):
