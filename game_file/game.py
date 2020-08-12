@@ -117,45 +117,39 @@ class Game:
         self.correct_answer = self.sql_request.question_tmp[2]
 
         if len(self.sql_request.question_tmp[1]) > 58 :
-            self.print_question(screen, variable[:len(self.sql_request.question_tmp[1]) - 58], 10 )
-            self.print_question(screen, variable[58:], 20)
+            self.print_question(screen, variable[:len(self.sql_request.question_tmp[1]) - 58], 40 )
+            self.print_question(screen, variable[58:], 10)
         else :
             self.print_question(screen, variable, 15)
 
+
+        # importer les réponses 
+        
+        counter = 0
+        self.sql_request.read_answer(self.question)
+        reponse = self.sql_request.anwser_tmp
+        font = pygame.font.Font(None, 35)
+        text = font.render(reponse[counter][2], 1, (255,255,255))
+        text_rect = text.get_rect()
+        text_rect.x = 300
+        text_rect.y = math.ceil(screen.get_height() / 35 + 237)
+        
+        # afficher les texte des question
+        for text in range (4) :
+            text = font.render(reponse[counter][2], 1, (255,255,255))
+            screen.blit(text, text_rect)
+            text_rect.y += 110           
+            counter += 1
+
     def print_question(self, screen, variable, y):
         
-        font = pygame.font.Font(None, 35)
+        font = pygame.font.Font(None, 30)
         text = font.render(variable, 1, (255,255,255))
         text_rect = text.get_rect()
         # Positionner la question
         text_rect.x = 270
         text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - y )
         screen.blit(text, text_rect)
-
-        # print la question
-        
-        text = font.render(variable, 1, (255,255,255))
-        text_rect = text.get_rect()
-        # Positionner la question
-        text_rect.x = 270
-        text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - 15 )
-        screen.blit(text, text_rect)
-
-        # importer les réponses 
-        text_rect = text.get_rect()
-        counter = 0
-        self.sql_request.read_answer(self.question)
-        reponse = self.sql_request.anwser_tmp
-        text = font.render(reponse[counter][2], 1, (255,255,255))
-        text_rect.x = self.variable_load.lol.get_width() + 100
-        text_rect.y = math.ceil(screen.get_height() / 35 + 237)
-        
-        # afficher les texte des question
-        for text in range (4) :
-            text = font.render(variable[counter][2], 1, (255,255,255))
-            screen.blit(text, text_rect)
-            text_rect.y += 110           
-            counter += 1
 
 
     def create_bloc(self, screen):
