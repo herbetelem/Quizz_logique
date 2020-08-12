@@ -105,8 +105,8 @@ class Game:
         text = font.render(phrase, 1, (255,255,255))
 
         # * blit le timer
-        screen.blit(self.background_timer, (25, 120))
-        screen.blit(text,(50, 145))
+        screen.blit(self.background_timer, (700, 160))
+        screen.blit(text,(715, 185))
         
     def update_question(self, screen):
 
@@ -117,7 +117,7 @@ class Game:
         self.correct_answer = self.sql_request.question_tmp[2]
 
         if len(self.sql_request.question_tmp[1]) > 58 :
-            self.print_question(screen, variable[:len(self.sql_request.question_tmp[1]) - 58], 40 )
+            self.print_question(screen, variable[:58], 40 )
             self.print_question(screen, variable[58:], 10)
         else :
             self.print_question(screen, variable, 15)
