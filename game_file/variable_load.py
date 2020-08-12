@@ -13,9 +13,9 @@ class Variable_load:
 
         # print le cadre du titre 
         self.title = pygame.image.load('asset/button/title.png')
-        self.title = pygame.transform.scale(self.title, (700, 125))
+        self.title = pygame.transform.scale(self.title, (850, 125))
         self.title_rect = self.title.get_rect()
-        self.title_rect.x = 250
+        self.title_rect.x = 120
         self.title_rect.y = math.ceil(screen.get_height() / 40)
 
 

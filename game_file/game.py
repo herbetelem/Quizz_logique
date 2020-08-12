@@ -116,15 +116,15 @@ class Game:
         # font = pygame.font.Font(None, 35)
         self.correct_answer = self.sql_request.question_tmp[2]
 
-        if len(self.sql_request.question_tmp[1]) > 58 :
-            self.print_question(screen, variable[:len(self.sql_request.question_tmp[1]) - 58], 40 )
-            self.print_question(screen, variable[58:], 10)
+        if len(self.sql_request.question_tmp[1]) > 75 :
+
+            self.print_question(screen, variable[:75], 35 )
+            self.print_question(screen, variable[75:], 5)
         else :
             self.print_question(screen, variable, 15)
 
 
         # importer les réponses 
-        
         counter = 0
         self.sql_request.read_answer(self.question)
         reponse = self.sql_request.anwser_tmp
@@ -147,7 +147,7 @@ class Game:
         text = font.render(variable, 1, (255,255,255))
         text_rect = text.get_rect()
         # Positionner la question
-        text_rect.x = 270
+        text_rect.x = 140
         text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - y )
         screen.blit(text, text_rect)
 
