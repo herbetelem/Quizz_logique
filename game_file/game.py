@@ -123,7 +123,7 @@ class Game:
         else :
             self.print_question(screen, variable, 15)
 
-            def print_question(self, screen, variable, y):
+    def print_question(self, screen, variable, y):
         
         font = pygame.font.Font(None, 35)
         text = font.render(variable, 1, (255,255,255))
@@ -238,12 +238,3 @@ class Game:
         screen.blit(self.background, (0,0))
 
 
-    def print_question(self, screen, variable, y):
-        
-        font = pygame.font.Font(None, 35)
-        text = font.render(variable, 1, (255,255,255))
-        text_rect = text.get_rect()
-        # Positionner la question
-        text_rect.x = self.variable_load.lol.get_width() + 70
-        text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - y )
-        screen.blit(text, text_rect)
