@@ -115,7 +115,6 @@ class Game:
         variable = self.sql_request.question_tmp[1]
         # font = pygame.font.Font(None, 35)
         self.correct_answer = self.sql_request.question_tmp[2]
-        font = pygame.font.Font(None, 35)
 
         if len(self.sql_request.question_tmp[1]) > 58 :
             self.print_question(screen, variable[:len(self.sql_request.question_tmp[1]) - 58], 10 )
@@ -129,7 +128,7 @@ class Game:
         text = font.render(variable, 1, (255,255,255))
         text_rect = text.get_rect()
         # Positionner la question
-        text_rect.x = self.variable_load.lol.get_width() + 70
+        text_rect.x = 270
         text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - y )
         screen.blit(text, text_rect)
 
@@ -138,7 +137,7 @@ class Game:
         text = font.render(variable, 1, (255,255,255))
         text_rect = text.get_rect()
         # Positionner la question
-        text_rect.x = self.variable_load.lol.get_width() + 70
+        text_rect.x = 270
         text_rect.y = math.ceil((screen.get_height() / 40) + (self.variable_load.title.get_height() / 2) - 15 )
         screen.blit(text, text_rect)
 
