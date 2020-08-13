@@ -54,6 +54,9 @@ class Game:
         self.clock = pygame.time.Clock()
         # * set la limite de bonus
         self.timer = 20000
+        
+        # la solution
+        self.soluce = ["testd", "testdtestd", "testdtestdtestd", "testdtestdtestdtestd", "testdtestdtestdtestdtestd"]
 
 
     # update l'écran
@@ -61,15 +64,27 @@ class Game:
         if self.player and self.player_name != "Homer Simpson":
             
             # * gestion du temps
-            if self.timer > 0:
+            if self.timer > 0 and self.player_validated == False:
                 self.timer -= self.clock.tick(60)
 
             # afficher le logo, le bloc de la question et les bloc reponse et next
             screen.blit(self.variable_load.title, self.variable_load.title_rect)
+            
+            
             if self.choice_player > 0 and self.player_validated == False:
+                # si le joueur a selectionner une reponse je lui montre le bouton valider
                 screen.blit(self.variable_load.validation, self.variable_load.validation_rect)
             if self.player_validated:
+                # si le joueur a valider sa reponse j'affiche next et la soluce
+                screen.blit(self.variable_load.soluce, self.variable_load.soluce_rect)
                 screen.blit(self.variable_load.next, self.variable_load.next_rect)
+                y_soluce = 270
+                x_soluce = 710
+                font = pygame.font.Font(None, 36)
+                for i in self.soluce:
+                    text = font.render(i, 1, (255,255,255))
+                    screen.blit(text, (x_soluce, y_soluce))
+                    y_soluce += 35
             
             # * afficher les bloc
             for bloc in self.list_bloc:
@@ -99,9 +114,12 @@ class Game:
 
     def update_timer(self, screen):
         self.background_timer = pygame.image.load('asset/button/title.png')
-        self.background_timer = pygame.transform.scale(self.background_timer, (250, 70))
+        self.background_timer = pygame.transform.scale(self.background_timer, (270, 70))
         font = pygame.font.Font(None, 36)
-        phrase = f"Timer bonus : {round(self.timer / 1000)}"
+        format_timer = round(self.timer / 1000)
+        if format_timer < 0:
+            format_timer = 0
+        phrase = f"Timer bonus : {format_timer}"
         text = font.render(phrase, 1, (255,255,255))
 
         # * blit le timer
@@ -115,6 +133,7 @@ class Game:
         variable = self.sql_request.question_tmp[1]
         # font = pygame.font.Font(None, 35)
         self.correct_answer = self.sql_request.question_tmp[2]
+        self.help = self.sql_request.question_tmp[3]
 
         if len(self.sql_request.question_tmp[1]) > 75 :
 
@@ -140,6 +159,13 @@ class Game:
             screen.blit(text, text_rect)
             text_rect.y += 110           
             counter += 1
+            
+        # update la solution
+        self.soluce = []
+        reponse_tmp = self.help
+        while len(reponse_tmp) > 0:
+            self.soluce.append(reponse_tmp[:20])
+            reponse_tmp = reponse_tmp[20:]
 
     def print_question(self, screen, variable, y):
         
@@ -177,7 +203,10 @@ class Game:
             self.result_turn = True
             # * je lance la musique
             self.launch_music("asset/music/true.ogg")
-            self.score += 1 * round(self.timer / 1000)
+            if round(self.timer / 1000) > 0:
+                self.score += 1 * round(self.timer / 1000)
+            else : 
+                self.score += 1
             print(self.score)
         else :
             self.result_turn = False
